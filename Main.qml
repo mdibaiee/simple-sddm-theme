@@ -70,13 +70,8 @@ Rectangle {
 	    anchors.top: parent.top
 	    anchors.topMargin: 5
 	    z: 100
-	    width: 350
+	    width: 300
 
-            opacity: 0.7
-	    gradient: Gradient {
-                GradientStop { position: 0.0; color: "#1c1c1c" }
-                GradientStop { position: 1.0; color: "#000000" }
-            }
 
             border.color: "transparent"
             border.width: 0
@@ -93,12 +88,14 @@ Rectangle {
                     model: sessionModel
                     index: sessionModel.lastIndex
 		    
+		    opacity: 0
                     KeyNavigation.backtab: password; KeyNavigation.tab: layoutBox
                 }
 
 		LayoutBox {
                     id: layoutBox
                     font.pixelSize: 14
+		    opacity: 0
 
                     //arrowIcon: "angle-down.png"
 
@@ -108,6 +105,17 @@ Rectangle {
                 Button {
                     id: shutdownButton
                     text: textConstants.shutdown
+		    width: 65
+		    height: 25
+
+		    gradient: Gradient {
+			GradientStop { position: 0.0; color: "#333" }
+			GradientStop { position: 1.0; color: "#333" }
+		    }
+
+		    color: "#bbb"
+                    font.pixelSize: 10
+		    font.bold: false
 		    
                     onClicked: sddm.powerOff()
 
@@ -117,6 +125,17 @@ Rectangle {
                 Button {
                     id: rebootButton
                     text: textConstants.reboot
+		    width: 65
+		    height: 25
+
+		    gradient: Gradient {
+			GradientStop { position: 0.0; color: "#333" }
+			GradientStop { position: 1.0; color: "#333" }
+		    }
+
+		    color: "#bbb"
+                    font.pixelSize: 10
+		    font.bold: false
 
                     onClicked: sddm.reboot()
 
@@ -128,13 +147,13 @@ Rectangle {
         Rectangle {
             anchors.centerIn: parent
 	    width: Math.max(320, mainColumn.implicitWidth + 100)
-	    height: mainColumn.implicitHeight + 50
-	    opacity: 0.7
+	    //height: mainColumn.implicitHeight + 50
+	    height: 10
+	    opacity: 1
 	    gradient: Gradient {
-                GradientStop { position: 0.0; color: "#1c1c1c" }
-                GradientStop { position: 1.0; color: "#000000" }
+                GradientStop { position: 0.0; color: "transparent" }
+                GradientStop { position: 1.0; color: "transparent" }
             }
-	    radius: 10
 
             border.color: "transparent"
             border.width: 0
@@ -146,16 +165,21 @@ Rectangle {
 
                 TextBox {
                     id: name
-		    height: 30
+		    //height: 30
+	 	    height: 0
 		    Layout.fillWidth: true
                     text: userModel.lastUser
                     font.pixelSize: 14
 		    font.bold: true
+		    font.family: "Ubuntu"
 		    textColor: "#ffffff"
 		    color: "#000000"
-		    opacity: 0.8
-		    borderColor: "transparent"
-		    radius: 10
+		    borderColor: "#333"
+		    opacity: 0
+
+		    property int lBorderWidth: 0
+		    property int rBorderWidth: 0
+		    property int tBorderWidth: 0
 		    
 		    KeyNavigation.backtab: rebootButton; KeyNavigation.tab: password
 		    
@@ -171,13 +195,17 @@ Rectangle {
                     id: password
 		    Layout.fillWidth: true
                     font.pixelSize: 14
-		    color: "#000000"
-		    textColor: "#ffffff"
-		    opacity: 0.8
+		    //color: "#000000"
+		    textColor: "#000"
+		    font.family: "Ubuntu"
+		    opacity: 1
 		    tooltipBG: "#1c1c1c"
 		    borderColor: "transparent"
-		    radius: 10
-		    
+		    focusColor: "transparent"
+		    hoverColor: "transparent"
+		    color: "transparent"
+		    width: 0
+
 		    KeyNavigation.backtab: name; KeyNavigation.tab: session
 		    
 		    Keys.onPressed: {
