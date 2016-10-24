@@ -8,7 +8,8 @@ A very simple theme without any fuss, shutdown and reboot buttons with an input,
 If you want to integrate this with `nitrogen` to get your login background to sync with your desktop background, put this script in your `/usr/share/sddm/scripts/Xsetup`:
 
 ```bash
-ln $(cat ~/.config/nitrogen/bg-saved.cfg | head -n 2 | tail -n 1 | sed 's/file=//') /usr/share/sddm/themes/mahdi/background-link
+rm /usr/share/sddm/themes/mahdi/background-link
+cp $(cat /home/mahdi/.config/nitrogen/bg-saved.cfg | head -n 2 | tail -n 1 | sed 's/file=//') /usr/share/sddm/themes/mahdi/background-link
 ```
 
 If you want to change the background, change the `background-link` to something else using:
